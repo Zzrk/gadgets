@@ -19,6 +19,9 @@
       },
       "globalShortcut": {
         "all": true
+      },
+      "window": {
+        "all": true
       }
     },
     "bundle": {
@@ -38,9 +41,10 @@
     },
     "windows": [
       {
+        "label": "main",
+        "title": "gadgets",
         "fullscreen": false,
         "resizable": true,
-        "title": "gadgets",
         "width": 800,
         "height": 600
       }

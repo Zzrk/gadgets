@@ -15,6 +15,7 @@ fn mousemove() {
     // 鼠标移动和点击事件
     println!("mousemove");
     let mut enigo = Enigo::new();
+    // TODO: 下一章按钮的位置不固定，用键盘代替
     enigo.mouse_move_to(1250, 1250);
     enigo.mouse_click(MouseButton::Left);
 }
