@@ -1,6 +1,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use enigo::*;
+use screenshots::Screen;
 
 #[tauri::command]
 fn mousescroll() {
@@ -20,9 +21,24 @@ fn mousemove() {
     enigo.mouse_click(MouseButton::Left);
 }
 
+#[tauri::command]
+fn screen_capture() {
+    let screens = Screen::all().unwrap();
+
+    for (index, screen) in screens.iter().enumerate() {
+        println!("capturer {screen:?}");
+        let image = screen.capture().unwrap();
+        image.save(format!("target/{}.png", index)).unwrap();
+    }
+}
+
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![mousescroll, mousemove])
+        .invoke_handler(tauri::generate_handler![
+            mousescroll,
+            mousemove,
+            screen_capture
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
